@@ -1,6 +1,7 @@
 package stuff.steven.notesandjunk
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
@@ -69,6 +70,12 @@ class MainFragment : Fragment() {
     }
 
     private fun fetchText(){
+        val textSize = defaultPrefs.getString(resources.getString(R.string.pref_text_size_key), resources.getString(R.string.pref_text_size_default))
+        val textColor = defaultPrefs.getString(resources.getString(R.string.pref_text_color_key), resources.getString(R.string.pref_text_color_default))
+        val backgroundColor = defaultPrefs.getString(resources.getString(R.string.pref_background_color_key), resources.getString(R.string.pref_background_color_default))
+        edit_text.setTextColor(Color.parseColor(textColor))
+        edit_text.setBackgroundColor(Color.parseColor(backgroundColor))
+        edit_text.setTextSize(textSize.toFloat())
         edit_text.setText(defaultPrefs.getString(PREF_SAVED_TEXT, ""))
     }
 
