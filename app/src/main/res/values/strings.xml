@@ -1,8 +1,87 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name">Notes and Stuff</string>
 
+    <!--SharedPreferences keys-->
+    <string name="pref_text_color_key">pref_text_color_key</string>
+    <string name="pref_text_size_key">pref_text_size_key</string>
+    <string name="pref_background_color_key">pref_background_color_key</string>
+
     <!--Settings Menu-->
-    <string name="text_color">Text Color</string>
-    <string name="background_color">Background Color</string>
-    <string name="text_size">Text Size</string>
+    <string name="settings">Settings</string>
+
+    <!--Pref Titles-->
+    <string name="pref_title_text_color">Text Color</string>
+    <string name="pref_title_text_size">Text Font Size</string>
+    <string name="pref_title_background_color">Background Color</string>
+
+    <!--Pref Descriptions-->
+    <string name="pref_summary_text_color">Change the color of the text.</string>
+    <string name="pref_summary_text_size">Change the size of the text.</string>
+    <string name="pref_summary_background_color">Change the background color behind the text.</string>
+
+    <!--Pref Text Size List-->
+    <string-array name="pref_entries_text_size">
+        <item android:textSize="10dp">Sample Text</item>
+        <item android:textSize="12dp">Sample Text</item>
+        <item android:textSize="14dp">Sample Text</item>
+        <item android:textSize="16dp">Sample Text</item>
+        <item android:textSize="18dp">Sample Text</item>
+        <item android:textSize="22dp">Sample Text</item>
+        <item android:textSize="28dp">Sample Text</item>
+    </string-array>
+
+    <!--Pref Text Size Entries List-->
+    <string-array name="pref_entry_values_text_size">
+        <item>10dp</item>
+        <item>12dp</item>
+        <item>14dp</item>
+        <item>16dp</item>
+        <item>18dp</item>
+        <item>22dp</item>
+        <item>28dp</item>
+    </string-array>
+
+    <!--Pref Color List-->
+    <string-array name="pref_entries_color">
+        <item>Black</item>
+        <item>Blue</item>
+        <item>Cyan</item>
+        <item>Dark Gray</item>
+        <item>Gray</item>
+        <item>Green</item>
+        <item>Light Gray</item>
+        <item>Magenta</item>
+        <item>Red</item>
+        <item>Transparent</item>
+        <item>White</item>
+        <item>Yellow</item>
+    </string-array>
+
+    <!--Pref Color Values List-->
+    <string-array name="pref_entry_values_color">
+        <!--<item>Black</item>-->
+        <item>#ff000000</item>
+        <!--<item>Blue</item>-->
+        <item>#ff0000ff</item>
+        <!--<item>Cyan</item>-->
+        <item>#ff00ffff</item>
+        <!--<item>Dark Gray</item>-->
+        <item>#ff444444</item>
+        <!--<item>Gray</item>-->
+        <item>#ff888888</item>
+        <!--<item>Green</item>-->
+        <item>#ff00ff00</item>
+        <!--<item>Light Gray</item>-->
+        <item>#ffcccccc</item>
+        <!--<item>Magenta</item>-->
+        <item>#ffff00ff</item>
+        <!--<item>Red</item>-->
+        <item>#ffff0000</item>
+        <!--<item>Transparent</item>-->
+        <item>#00000000</item>
+        <!--<item>White</item>-->
+        <item>#ffffffff</item>
+        <!--<item>Yellow</item>-->
+        <item>#ffffff00</item>
+    </string-array>
 </resources>
