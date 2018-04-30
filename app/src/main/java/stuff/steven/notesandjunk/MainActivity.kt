@@ -1,5 +1,6 @@
 package stuff.steven.notesandjunk
 
+import android.app.FragmentTransaction
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 
@@ -8,6 +9,7 @@ class MainActivity : AppCompatActivity(), MainFragment.OnMenuItemSelected {
 
     override fun onMenuSettingsSelected() {
         supportFragmentManager.beginTransaction()
+                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
             .replace(R.id.fragment_container, SettingsFragment())
             .addToBackStack(null)
             .commit()
