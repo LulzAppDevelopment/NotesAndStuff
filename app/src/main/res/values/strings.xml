@@ -1,5 +1,6 @@
 <resources xmlns:android="http://schemas.android.com/tools">
     <string name="app_name">Notes and Stuff</string>
+    <string name="edit_text_hint">Type stuff here</string>
 
     <!--SharedPreferences keys-->
     <string name="pref_text_color_key">pref_text_color_key</string>

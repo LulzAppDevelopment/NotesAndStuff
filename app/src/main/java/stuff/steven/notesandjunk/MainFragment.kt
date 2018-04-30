@@ -22,7 +22,7 @@ class MainFragment : Fragment() {
         super.onAttach(context)
         try {
             onMenuItemSelected = context as OnMenuItemSelected
-        }catch (e : ClassCastException){
+        } catch (e : ClassCastException) {
             throw ClassCastException(context.toString() + " must implement OnMenuItemSelected")
         }
 
@@ -75,7 +75,7 @@ class MainFragment : Fragment() {
         val backgroundColor = defaultPrefs.getString(resources.getString(R.string.pref_background_color_key), resources.getString(R.string.pref_background_color_default))
         edit_text.setTextColor(Color.parseColor(textColor))
         edit_text.setBackgroundColor(Color.parseColor(backgroundColor))
-        edit_text.setTextSize(textSize.toFloat())
+        edit_text.textSize = textSize.toFloat()
         edit_text.setText(defaultPrefs.getString(PREF_SAVED_TEXT, ""))
     }
 
