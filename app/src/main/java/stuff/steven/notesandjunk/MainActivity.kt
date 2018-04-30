@@ -18,7 +18,13 @@ class MainActivity : AppCompatActivity() {
                     .commit()
                 return true
             }
-
+            android.R.id.home -> {
+                if (supportFragmentManager.backStackEntryCount > 0) {
+                    supportFragmentManager.popBackStack()
+                    supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                }
+                return true
+            }
             else -> return super.onOptionsItemSelected(item)
         }
     }
@@ -30,4 +36,10 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.findFragmentById(R.id.fragment_container) ?: supportFragmentManager.beginTransaction()
                 .add(R.id.fragment_container, MainFragment()).commit()
     }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
+        supportActionBar?.setDisplayHomeAsUpEnabled(false)
+    }
+
 }
