@@ -9,23 +9,9 @@ import android.view.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
-    private lateinit var onMenuItemSelected : OnMenuItemSelected
+
     private val defaultPrefs by lazy {
         PreferenceManager.getDefaultSharedPreferences(activity)
-    }
-
-    interface OnMenuItemSelected{
-        fun onMenuSettingsSelected()
-    }
-
-    override fun onAttach(context: Context?) {
-        super.onAttach(context)
-        try {
-            onMenuItemSelected = context as OnMenuItemSelected
-        } catch (e : ClassCastException) {
-            throw ClassCastException(context.toString() + " must implement OnMenuItemSelected")
-        }
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,16 +26,6 @@ class MainFragment : Fragment() {
     override fun onCreateOptionsMenu(menu: Menu?, inflater: MenuInflater?) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater?.inflate(R.menu.settings_menu, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem?): Boolean {
-        when(item?.itemId){
-            R.id.settings -> {
-                onMenuItemSelected.onMenuSettingsSelected()
-                return true
-            }
-            else -> return super.onOptionsItemSelected(item)
-        }
     }
 
     override fun onPause() {
