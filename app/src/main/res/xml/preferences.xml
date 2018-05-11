@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <ListPreference
-        android:key="@string/pref_text_size_key"
+        android:key="@string/pref_key_text_size"
         android:title="@string/pref_title_text_size"
         android:summary="@string/pref_summary_text_size"
         android:entries="@array/pref_entries_text_size"
@@ -9,7 +9,7 @@
         android:defaultValue="@string/pref_text_size_default"
         />
     <ListPreference
-        android:key="@string/pref_text_color_key"
+        android:key="@string/pref_key_text_color"
         android:title="@string/pref_title_text_color"
         android:summary="@string/pref_summary_text_color"
         android:entries="@array/pref_entries_color"
@@ -17,7 +17,7 @@
         android:defaultValue="@string/pref_text_color_default"
         />
     <ListPreference
-        android:key="@string/pref_background_color_key"
+        android:key="@string/pref_key_background_color"
         android:title="@string/pref_title_background_color"
         android:summary="@string/pref_summary_background_color"
         android:entries="@array/pref_entries_color"
