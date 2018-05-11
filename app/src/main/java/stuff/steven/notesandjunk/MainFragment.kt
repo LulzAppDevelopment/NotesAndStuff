@@ -5,7 +5,6 @@ import android.graphics.Color
 import android.os.Bundle
 import android.preference.PreferenceManager
 import android.support.v4.app.Fragment
-import android.support.v7.app.AppCompatActivity
 import android.view.*
 import kotlinx.android.synthetic.main.fragment_main.*
 
@@ -32,18 +31,16 @@ class MainFragment : Fragment() {
     override fun onPause() {
         super.onPause()
         saveText()
+        saveCursorPosition()
     }
 
     override fun onResume() {
         super.onResume()
         fetchText()
+        fetchCursorPosition()
     }
 
     private fun saveText(){
-//        with(defaultPrefs.edit()){
-//            putString(PREF_SAVED_TEXT, edit_text.text.toString())
-//            apply()
-//        }
         val textToSave = edit_text.text.toString()
         context?.openFileOutput(FILENAME_STORING_TEXT, Context.MODE_PRIVATE).use {
             it?.write(textToSave.toByteArray())
@@ -51,13 +48,9 @@ class MainFragment : Fragment() {
     }
 
     private fun fetchText(){
-        val textSize = defaultPrefs.getString(resources.getString(R.string.pref_text_size_key), resources.getString(R.string.pref_text_size_default))
-        val textColor = defaultPrefs.getString(resources.getString(R.string.pref_text_color_key), resources.getString(R.string.pref_text_color_default))
-        val backgroundColor = defaultPrefs.getString(resources.getString(R.string.pref_background_color_key), resources.getString(R.string.pref_background_color_default))
-        edit_text.setTextColor(Color.parseColor(textColor))
-        edit_text.setBackgroundColor(Color.parseColor(backgroundColor))
-        edit_text.textSize = textSize.toFloat()
-        //edit_text.setText(defaultPrefs.getString(PREF_SAVED_TEXT, ""))
+        val savedTextSize = defaultPrefs.getString(resources.getString(R.string.pref_key_text_size), resources.getString(R.string.pref_text_size_default))
+        val textColor = defaultPrefs.getString(resources.getString(R.string.pref_key_text_color), resources.getString(R.string.pref_text_color_default))
+        val backgroundColor = defaultPrefs.getString(resources.getString(R.string.pref_key_background_color), resources.getString(R.string.pref_background_color_default))
 
         val file = context?.getFileStreamPath(FILENAME_STORING_TEXT)
         var textToShow = ""
@@ -67,14 +60,30 @@ class MainFragment : Fragment() {
                 if (bytes != null) textToShow = String(bytes)
             }
         }
-        edit_text.setText(textToShow)
+
+        with(edit_text){
+            setTextColor(Color.parseColor(textColor))
+            setBackgroundColor(Color.parseColor(backgroundColor))
+            textSize = savedTextSize.toFloat()
+            setText(textToShow)
+            setSelection(fetchCursorPosition())
+        }
+    }
+
+    private fun saveCursorPosition() {
+        with(defaultPrefs.edit()){
+            putInt(resources.getString(R.string.pref_key_cursor_position), edit_text.selectionEnd)
+            commit()
+        }
+    }
+
+    private fun fetchCursorPosition() : Int{
+        return defaultPrefs.getInt(resources.getString(R.string.pref_key_cursor_position), 0)
     }
 
     companion object {
         const val TAG = "MainFragment"
 
-        //const val PREF_FILENAME = "stuff.steven.notesandjunk.MainFragment"
-        //const val PREF_SAVED_TEXT = "saved_text"
         const val FILENAME_STORING_TEXT = "edittext_text"
     }
 }
