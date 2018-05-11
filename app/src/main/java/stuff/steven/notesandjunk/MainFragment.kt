@@ -40,9 +40,13 @@ class MainFragment : Fragment() {
     }
 
     private fun saveText(){
-        with(defaultPrefs.edit()){
-            putString(PREF_SAVED_TEXT, edit_text.text.toString())
-            apply()
+//        with(defaultPrefs.edit()){
+//            putString(PREF_SAVED_TEXT, edit_text.text.toString())
+//            apply()
+//        }
+        val textToSave = edit_text.text.toString()
+        context?.openFileOutput(FILENAME_STORING_TEXT, Context.MODE_PRIVATE).use {
+            it?.write(textToSave.toByteArray())
         }
     }
 
@@ -53,13 +57,24 @@ class MainFragment : Fragment() {
         edit_text.setTextColor(Color.parseColor(textColor))
         edit_text.setBackgroundColor(Color.parseColor(backgroundColor))
         edit_text.textSize = textSize.toFloat()
-        edit_text.setText(defaultPrefs.getString(PREF_SAVED_TEXT, ""))
+        //edit_text.setText(defaultPrefs.getString(PREF_SAVED_TEXT, ""))
+
+        val file = context?.getFileStreamPath(FILENAME_STORING_TEXT)
+        var textToShow = ""
+        if (file?.exists() == true) {
+            context?.openFileInput(FILENAME_STORING_TEXT).use {
+                val bytes = it?.readBytes()
+                if (bytes != null) textToShow = String(bytes)
+            }
+        }
+        edit_text.setText(textToShow)
     }
 
     companion object {
         const val TAG = "MainFragment"
 
         //const val PREF_FILENAME = "stuff.steven.notesandjunk.MainFragment"
-        const val PREF_SAVED_TEXT = "saved_text"
+        //const val PREF_SAVED_TEXT = "saved_text"
+        const val FILENAME_STORING_TEXT = "edittext_text"
     }
 }
