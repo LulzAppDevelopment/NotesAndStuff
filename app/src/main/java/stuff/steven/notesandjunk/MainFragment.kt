@@ -98,22 +98,22 @@ class MainFragment : Fragment() {
 
         override fun onPostExecute(result: String) {
             super.onPostExecute(result)
-
             with(weakEditText.get() as EditText){
                 setText(result)
-                setSelection(fetchCursorPosition())
+                val cursorPosition = fetchCursorPosition(weakSharedPrefs.get())
+                if (text.length > 0)
+                    setSelection(if (cursorPosition <= text.length) cursorPosition else text.length)
             }
-
         }
 
-        private fun fetchCursorPosition() : Int{
-            return weakSharedPrefs.get()?.getInt(weakContext.get()?.resources?.getString(R.string.pref_key_cursor_position), 0)!!
+        private fun fetchCursorPosition(prefs: SharedPreferences?) : Int{
+            return prefs?.getInt(weakContext.get()?.resources?.getString(R.string.pref_key_cursor_position), 0)!!
         }
     }
 
     companion object {
         const val TAG = "MainFragment"
 
-        const val FILENAME_STORING_TEXT = "edittext_text"
+        const val FILENAME_STORING_TEXT = "edittext_text.txt"
     }
 }
