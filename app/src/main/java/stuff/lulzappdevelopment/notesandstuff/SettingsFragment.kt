@@ -1,4 +1,4 @@
-package stuff.steven.notesandjunk
+package stuff.lulzappdevelopment.notesandstuff
 
 import android.content.Context
 import android.content.Context.INPUT_METHOD_SERVICE

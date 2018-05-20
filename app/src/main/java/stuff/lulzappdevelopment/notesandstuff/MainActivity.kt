@@ -1,4 +1,4 @@
-package stuff.steven.notesandjunk
+package stuff.lulzappdevelopment.notesandstuff
 
 import android.app.FragmentTransaction
 import android.os.Bundle
