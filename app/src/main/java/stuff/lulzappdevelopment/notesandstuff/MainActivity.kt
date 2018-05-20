@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
                     .replace(R.id.fragment_container, SettingsFragment())
                     .addToBackStack(null)
                     .commit()
-
                 return true
             }
             android.R.id.home -> {
